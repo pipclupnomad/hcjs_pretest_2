@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pretest 2 register</title>
+    <style>
+        * {
+            margin: auto;
+        }
+
+
+        section {
+            margin-top: -1rem;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+
+        .container {
+            width: fit-content;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        input,
+        select,
+        textarea {
+            box-shadow: -0.5px -0.5px gray;
+        }
+
+        input[type=text],
+        input[type=password],
+        input[type=email],
+        textarea {
+            width: 17rem;
+            float: right;
+        }
+
+        div {
+            margin-top: 0.5rem;
+        }
+
+        label {
+            margin-right: 1.5rem;
+        }
+
+        input[type=radio],
+        input[type=checkbox] {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .gender,
+        .hobby {
+            display: inline-flex;
+            position: relative;
+        }
+
+        .gen {
+            position: relative;
+            left: 7rem;
+        }
+
+        .hb {
+            position: relative;
+            left: 5rem;
+        }
+
+        input[type=date] {
+            position: relative;
+            left: 2.75rem;
+        }
+
+        select {
+            position: relative;
+            left: 4.75rem;
+        }
+
+        .submit-reset {
+            margin-left: 9rem;
+            margin-top: 4.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="images/p2_picture1.PNG" alt="">
+    </header>
+    <section>
+        <form action="" target="_blank" name="formSignup" id="formSignup" method="post">
+            <div class="container">
+                <h1>Registration Form</h1>
+                <div>
+                    <label>Login Name <span>*</span></label>
+                    <input type="text" name="lgname" id="lgname" required>
+                </div>
+
+                <div>
+                    <label for="">Password <span>*</span></label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+
+                <div>
+                    <label for="">Password Confirm <span>*</span></label>
+                    <input type="password" name="passwordcf" id="passwordcf" required>
+                </div>
+
+                <div>
+                    <label for="">Fullname <span>*</span></label>
+                    <input type="text" name="fullname" id="fullname" required>
+                </div>
+
+                <div>
+                    <label for="">Address <span>*</span></label>
+                    <input type="text" name="address" id="address" required>
+                </div>
+
+                <div>
+                    <label for="">Email <span>*</span></label>
+                    <input type="email" name="mail" id="mail" required>
+                </div>
+
+                <div class="gender">
+                    <label for="">Sex</label>
+                    <div class="gen">
+                        <input type="radio" name="radio" id="radio" checked> Male
+                        <input type="radio" name="radio" id="radio"> Female
+                    </div>
+                </div>
+
+                <div>
+                    <label for="">Date of Birth</label>
+                    <input type="date" name="dob" id="dob" value="1997-06-28">
+                </div>
+
+                <div>
+                    <label for="">Country</label>
+                    <select name="country" id="country">
+                        <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+                        <option value="Hue">Hue</option>
+                        <option value="Can Tho">Can Tho</option>
+                        <option value="Ha Noi">Ha Noi</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="">Phone Number</label>
+                    <input type="text" name="phone" id="phone">
+                </div>
+
+                <div class="hobby">
+                    <label for="">Hobbies</label>
+                    <div class="hb">
+                        <input type="checkbox" name="hobby" id="hobby"> Swimming
+                        <input type="checkbox" name="hobby" id="hobby"> Dancing
+                        <input type="checkbox" name="hobby" id="hobby"> Shopping
+                    </div>
+                </div>
+
+                <div>
+                    <label for="">Comment</label>
+                    <textarea name="comment" id="comment" cols="30" rows="5"></textarea>
+                </div>
+
+                <div class="submit-reset">
+                    <input type="submit" value="submit">
+                    <input type="reset" value="reset">
+                </div>
+
+            </div>
+        </form>
+    </section>
+    <script>
+        document.getElementById("formSignup").onsubmit = function () {
+            //password == password confirm
+            let pass1 = document.getElementById("password").value;
+            let pass2 = document.getElementById("passwordcf").value;
+            if (pass1 != pass2) {
+                alert("mat khau khong dung !");
+                document.getElementById("passwordcf").focus();
+                return false;
+            }
+
+            //password min 5 characters
+            let t = /^(\w|\d){5,}$/i;
+            if (t.test(pass1) == false) {
+                alert("password is not strong");
+                document.getElementById("password").focus();
+                return false;
+            }
+
+            //login name
+            let r = /^(\w|\d){5,}$/i;
+            let login = document.getElementById("lgname").value;
+            if (r.test(login) == false) {
+                alert("nhap lai login name");
+                document.getElementById("lgname").focus();
+                return false;
+            }
+
+            //email
+            let e = /^(\w|\d){3,}@\w{3,}.\w{3}$/;
+            let email = document.getElementById("mail").value;
+            if (e.test(email) == false) {
+                alert("nhap lai email");
+                document.getElementById("mail").focus();
+                return false;
+            }
+
+            //telephone
+            let p = /^\d{10}$/;
+            let tel = document.getElementById("phone").value;
+            if (p.test(tel) == false) {
+                alert("nhap lai SDT");
+                document.getElementById("phone").focus();
+                return false;
+            }
+
+            //dob checked for leap year
+            let date = new Date().getFullYear();
+            let yob = document.getElementById("dob").value;
+            let tuoi = new Date(yob).getFullYear();
+            let age = date - tuoi;
+            if (age % 4 != 0) {
+                alert(`nam ${tuoi} khong phai la nam nhuan`);
+            }
+            else {
+                alert(`nam ${tuoi} la nam nhuan`);
+            }
+
+            alert("“Welcome to Education Web !");
+
+        }
+    </script>
+</body>
+
+</html>
